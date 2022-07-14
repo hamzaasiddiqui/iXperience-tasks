@@ -1,0 +1,39 @@
+//Fibonacci Sequence with normal function
+function getFibonacci () {
+    let num1 = 0, num2 = 1;
+
+    console.log(num1);
+    console.log(num2);
+
+    for (let i = 0; i <= 10; i++) {
+        let num3 = num1 + num2;
+        
+        console.log(num3);
+
+        num1 = num2;
+        num2 = num3;
+    }
+}
+
+//Fibonacci Sequence with arrow function
+let getFibonacci2 = () => {
+    let num1 = 0, num2 = 1;
+
+    console.log(num1);
+    console.log(num2);
+
+    for (let i = 0; i <= 8; i++) {
+        let num3 = num1 + num2;
+        
+        console.log(num3);
+
+        num1 = num2;
+        num2 = num3;
+    }
+}
+
+//calling first function
+getFibonacci();
+
+//calling second function
+getFibonacci2();
