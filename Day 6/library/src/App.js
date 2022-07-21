@@ -7,11 +7,7 @@ import LibraryInput from './components/LibraryInput';
 import LibraryTable from './components/LibraryTable';
 
 export default function App() {
-  const [books, setbooks] = useState([{
-    name: '',
-    author: '',
-    isbn: ''
-  }]);
+  const [books, setbooks] = useState([]);
 
   function onBookCreated(book) {
     setbooks([...books, book]);
