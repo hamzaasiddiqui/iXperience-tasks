@@ -13,7 +13,7 @@ export default function LibraryInput(props) {
     event.preventDefault();
 
     const newBook = new Book(
-      new Date().getTime(),
+      null,
       book.name,
       book.author,
       book.isbn
