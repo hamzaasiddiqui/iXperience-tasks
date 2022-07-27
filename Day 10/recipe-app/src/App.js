@@ -7,7 +7,8 @@ import { auth } from "./firebase/firebase";
 import "bootstrap/dist/css/bootstrap.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/js/dist/collapse';
-// import "bootstrap/js/dist/popover.js.map"
+import "bootstrap/js/dist/modal"
+// import "bootstrap/js/dist/button"
 
 import Navbar from "./components/Navbar";
 import LoginPage from "./components/auth/LoginPage";

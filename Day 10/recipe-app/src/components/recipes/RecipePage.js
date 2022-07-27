@@ -56,9 +56,10 @@ export default function RecipePage() {
             key={recipe.recipe.label}
             title={recipe.recipe.label}
             mealType={recipe.recipe.mealType}
-            calories={recipe.recipe.calories}
             img={recipe.recipe.image}
+            cuisineType={recipe.recipe.cuisineType}
             ingredients={recipe.recipe.ingredients}
+            calories={recipe.recipe.calories}
           />
         ))}
       </div>

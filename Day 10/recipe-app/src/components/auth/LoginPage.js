@@ -5,28 +5,32 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 
 export default function LoginPage() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
   async function onFormSubmit(e) {
-    e.prevenDefault();
+    e.preventDefault();
 
     try {
-      const userCred = await signInWithEmailAndPassword(auth, email, password);
-
+      const userCred = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      
       console.log(userCred);
       navigate("/");
-
-    } catch (err) {
+    } catch(err) {
       console.log(err);
     }
   }
 
   return (
     <div className="p-3 m-3 border border-3 border-white rounded">
-      <div class="container text-white">
+      <div className="container text-white">
         <h1 className="text-center">Enter your login credentials</h1>
         <hr />
         <form onSubmit={onFormSubmit}>
@@ -56,5 +60,5 @@ export default function LoginPage() {
         </form>
       </div>
     </div>
-  );
+  )
 }

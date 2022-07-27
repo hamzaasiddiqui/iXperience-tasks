@@ -4,15 +4,16 @@ const Recipe = (props) => {
   return (
     <div>
       <div
-        className="card m-5 bg-dark text-white p-2"
-        style={{ width: "18rem" }}
+        className="card m-5 text-white text-center p-2"
+        style={{ width: "18rem", backgroundColor: "#0F2027" }}
       >
         <img className="card-img-top" src={props.img} alt="" />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
-          <p>{props.mealType}</p>
-          <p>{props.calories}</p>
+          <b>{props.mealType}</b>
+          <p>{props.cuisineType}</p>
         </div>
+        {/* button to trigger popping modal */}
         <button
           type="button"
           class="btn btn-outline-light"
@@ -23,6 +24,7 @@ const Recipe = (props) => {
         </button>
       </div>
 
+      {/* div to open the popover model */}
       <div
         class="modal fade"
         id="exampleModalCenter"
@@ -32,32 +34,36 @@ const Recipe = (props) => {
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
+          <div
+            class="modal-content text-white text-center border border-3 border-white rounded"
+            style={{ backgroundColor: "#0F2027" }}
+          >
+            {/* modal header section */}
+            <div class="modal-header text-center">
               <h5 class="modal-title" id="exampleModalLongTitle">
-                Modal title
+                {props.title}
               </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <h6 class="modal-title text-secondary">{props.cuisineType}</h6>
             </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-              <button
+            {/* modal body section */}
+            <div class="modal-body">
+              <h5>Ingredients</h5>
+              {props.ingredients.map( ingredient => (
+                <li>{ingredient.text}</li>
+              ))}
+              <hr/>
+              <h6>{props.calories.toFixed()} Calories</h6>
+            </div>
+            {/* modal footer and close button */}
+            <div class="modal-footer d-flex justify-content-center">
+              {/* <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn btn-outline-light"
                 data-dismiss="modal"
               >
                 Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
-              </button>
+              </button> */}
+              Click outside card to close
             </div>
           </div>
         </div>
