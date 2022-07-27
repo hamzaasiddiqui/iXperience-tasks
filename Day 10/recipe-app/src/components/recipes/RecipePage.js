@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Recipe from "../../models/recipe";
 
+import Spinner from "../Spinner";
+
 export default function RecipePage() {
   const API_APP_ID = "22cb6f2b";
   const API_APP_KEY = "82557cb472daf0f9300029f601144211";
 
   const [recipe, setRecipe] = useState([]);
   const [search, setSearch] = useState([]);
-  const [query, setQuery] = useState("chicken");
+  const [query, setQuery] = useState("food");
+  const [loading, setLoading] = useState(false);
 
   let url = `https://api.edamam.com/search?q=${query}&app_id=${API_APP_ID}&app_key=${API_APP_KEY}`;
 
@@ -16,9 +19,15 @@ export default function RecipePage() {
   }, [query]);
 
   async function getRecipes() {
-    const response = await fetch(url);
-    const data = await response.json();
-    setRecipe(data.hits);
+    setLoading(true);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setRecipe(data.hits);
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
   }
 
   const updateSearch = (e) => {
@@ -45,7 +54,7 @@ export default function RecipePage() {
             onChange={updateSearch}
           />
           <button class="btn btn-outline-light" type="button">
-            GetRecipe
+            {loading ? <Spinner /> : "get"}
           </button>
         </div>
       </form>
