@@ -3,29 +3,30 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "../../firebase/firebase";
+import Button from "../Button";
+import Alert from "../Alert";
 
 export default function LoginPage() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
   async function onFormSubmit(e) {
     e.preventDefault();
 
+    setLoading(true);
     try {
-      const userCred = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+
       console.log(userCred);
       navigate("/");
-    } catch(err) {
-      console.log(err);
+    } catch (err) {
+      setError(err.message);
     }
+    setLoading(false);
   }
 
   return (
@@ -55,10 +56,11 @@ export default function LoginPage() {
           </div>
 
           <div className="d-grid">
-            <button className="btn btn-outline-light mb-3">Login</button>
+            <Button loading={loading}>Login</Button>
           </div>
         </form>
+        {error ? <Alert className="mt-3">{error}</Alert> : <></>}
       </div>
     </div>
-  )
+  );
 }
